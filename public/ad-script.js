@@ -20,7 +20,7 @@ async function loadAdData(adId) {
     try {
         showLoading();
         
-        const response = await fetch(`/api/ads/getAdById/${adId}`);
+        const response = await fetch(`https://sahbo-app-api.onrender.com/api/ads/getAdById/${adId}`);
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
