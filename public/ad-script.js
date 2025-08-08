@@ -46,9 +46,6 @@ function displayAdData(adData) {
         // Update page title
         document.title = `${adData.adTitle} - Syria Market`;
         
-        // Update breadcrumb
-        document.getElementById('breadcrumb-category').textContent = adData.categoryName;
-        
         // Update ad header
         document.getElementById('ad-title').textContent = adData.adTitle;
         document.getElementById('price').textContent = adData.price;
@@ -108,8 +105,24 @@ function setupImages(images) {
     totalImages = images.length;
     currentImageIndex = 0;
     
+    // Convert base64 data to data URL if needed
+    const processImageData = (imageData) => {
+        if (imageData.startsWith('data:image/')) {
+            return imageData;
+        } else if (imageData.startsWith('/9j/') || imageData.startsWith('iVBOR')) {
+            // Base64 JPEG or PNG data
+            return `data:image/jpeg;base64,${imageData}`;
+        } else if (imageData.startsWith('http')) {
+            // Regular URL
+            return imageData;
+        } else {
+            // Assume it's base64 JPEG
+            return `data:image/jpeg;base64,${imageData}`;
+        }
+    };
+    
     // Set first image as main
-    mainImage.src = images[0];
+    mainImage.src = processImageData(images[0]);
     mainImage.alt = currentAdData.adTitle;
     
     // Update counter
@@ -117,13 +130,13 @@ function setupImages(images) {
     totalImagesSpan.textContent = totalImages.toString();
     
     // Create thumbnails
-    images.forEach((imageSrc, index) => {
+    images.forEach((imageData, index) => {
         const thumbnail = document.createElement('div');
         thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
         thumbnail.onclick = () => showImage(index);
         
         const img = document.createElement('img');
-        img.src = imageSrc;
+        img.src = processImageData(imageData);
         img.alt = `${currentAdData.adTitle} - Image ${index + 1}`;
         img.onerror = function() {
             this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjRjVGNUY1Ii8+CjxwYXRoIGQ9Ik0yMCAzMEMyMCAyNi44NjI5IDIyLjg2MjkgMjQgMjYgMjRINTRDNTcuMTM3MSAyNCA2MCAyNi44NjI5IDYwIDMwVjUwQzYwIDUzLjEzNzEgNTcuMTM3MSA1NiA1NCA1Nkg0NkM0Mi44NjI5IDU2IDQwIDUzLjEzNzEgNDAgNTBWMzBaIiBmaWxsPSIjRTVFNUU1Ii8+CjxjaXJjbGUgY3g9IjMwIiBjeT0iMzQiIHI9IjMiIGZpbGw9IiNEREREREQiLz4KPHBhdGggZD0iTTI2IDQ2TDM0IDM4TDQyIDQ2SDQ2IiBzdHJva2U9IiNEREREREQiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K';
@@ -147,9 +160,25 @@ function showImage(index) {
     
     currentImageIndex = index;
     
+    // Convert base64 data to data URL if needed
+    const processImageData = (imageData) => {
+        if (imageData.startsWith('data:image/')) {
+            return imageData;
+        } else if (imageData.startsWith('/9j/') || imageData.startsWith('iVBOR')) {
+            // Base64 JPEG or PNG data
+            return `data:image/jpeg;base64,${imageData}`;
+        } else if (imageData.startsWith('http')) {
+            // Regular URL
+            return imageData;
+        } else {
+            // Assume it's base64 JPEG
+            return `data:image/jpeg;base64,${imageData}`;
+        }
+    };
+    
     // Update main image
     const mainImage = document.getElementById('main-image');
-    mainImage.src = currentAdData.images[index];
+    mainImage.src = processImageData(currentAdData.images[index]);
     
     // Update counter
     document.getElementById('current-image').textContent = (index + 1).toString();
