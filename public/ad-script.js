@@ -228,60 +228,54 @@ function showError(message) {
 }
 
 // Action functions
-function contactSeller() {
+function copyPhoneNumber() {
     if (currentAdData && currentAdData.userPhone) {
         const phone = currentAdData.userPhone;
-        const message = `Hi, I'm interested in your ad: ${currentAdData.adTitle}`;
-        const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank');
+        const button = event.target.closest('.btn');
+        const originalContent = button.innerHTML;
+        
+        navigator.clipboard.writeText(phone).then(() => {
+            // Show success state
+            button.innerHTML = '<i class="fas fa-check"></i> تم النسخ';
+            button.classList.add('btn-success');
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+                button.innerHTML = originalContent;
+                button.classList.remove('btn-success');
+            }, 2000);
+        }).catch(() => {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = phone;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Show success state
+            button.innerHTML = '<i class="fas fa-check"></i> تم النسخ';
+            button.classList.add('btn-success');
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+                button.innerHTML = originalContent;
+                button.classList.remove('btn-success');
+            }, 2000);
+        });
     } else {
-        alert('Contact information not available');
-    }
-}
-
-function shareAd() {
-    document.getElementById('share-modal').style.display = 'block';
-}
-
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-}
-
-function shareToWhatsApp() {
-    const url = window.location.href;
-    const text = `Check out this ad: ${currentAdData.adTitle} - ${currentAdData.price} ${currentAdData.currencyName}`;
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
-    window.open(whatsappUrl, '_blank');
-    closeModal('share-modal');
-}
-
-function shareToFacebook() {
-    const url = window.location.href;
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-    window.open(facebookUrl, '_blank');
-    closeModal('share-modal');
-}
-
-function copyLink() {
-    navigator.clipboard.writeText(window.location.href).then(() => {
-        alert('Link copied to clipboard!');
-        closeModal('share-modal');
-    }).catch(() => {
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = window.location.href;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        alert('Link copied to clipboard!');
-        closeModal('share-modal');
-    });
-}
-
-function reportAd() {
-    if (confirm('Are you sure you want to report this ad?')) {
-        alert('Thank you for your report. We will review this ad shortly.');
+        const button = event.target.closest('.btn');
+        const originalContent = button.innerHTML;
+        
+        // Show error state
+        button.innerHTML = '<i class="fas fa-times"></i> غير متوفر';
+        button.classList.add('btn-error');
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+            button.innerHTML = originalContent;
+            button.classList.remove('btn-error');
+        }, 2000);
     }
 }
 
@@ -293,14 +287,6 @@ document.addEventListener('keydown', function(e) {
         } else if (e.key === 'ArrowRight') {
             nextImage();
         }
-    }
-});
-
-// Close modal when clicking outside
-window.addEventListener('click', function(e) {
-    const modal = document.getElementById('share-modal');
-    if (e.target === modal) {
-        closeModal('share-modal');
     }
 });
 

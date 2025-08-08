@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ad Details - Syria Market</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -87,19 +87,19 @@
                             <i class="fas fa-calendar"></i>
                             <span id="date">Date</span>
                         </div>
-                        <div class="meta-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span class="approved">Verified</span>
-                        </div>
                     </div>
 
+                    <div class="divider"></div>
+
                     <div class="ad-description">
-                        <h3>Description</h3>
+                        <h3>وصف الاعلان</h3>
                         <p id="description">Loading description...</p>
                     </div>
 
+                    <div class="divider"></div>
+
                     <div class="seller-info">
-                        <h3>Seller Information</h3>
+                        <h3>معلومات المعلن</h3>
                         <div class="seller-card">
                             <div class="seller-avatar">
                                 <i class="fas fa-user"></i>
@@ -114,46 +114,14 @@
                         </div>
                     </div>
 
+                    <div class="divider"></div>
+
                     <div class="ad-actions">
-                        <button class="btn btn-primary" onclick="contactSeller()">
-                            <i class="fas fa-phone"></i>
-                            Contact Seller
-                        </button>
-                        <button class="btn btn-secondary" onclick="shareAd()">
-                            <i class="fas fa-share"></i>
-                            Share
-                        </button>
-                        <button class="btn btn-outline" onclick="reportAd()">
-                            <i class="fas fa-flag"></i>
-                            Report
+                        <button class="btn btn-primary" onclick="copyPhoneNumber()">
+                            <i class="fas fa-copy"></i>
+                            نسخ رقم الهاتف
                         </button>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Share Modal -->
-    <div id="share-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Share this ad</h3>
-                <button class="close-btn" onclick="closeModal('share-modal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="share-options">
-                    <button class="share-btn whatsapp" onclick="shareToWhatsApp()">
-                        <i class="fab fa-whatsapp"></i>
-                        WhatsApp
-                    </button>
-                    <button class="share-btn facebook" onclick="shareToFacebook()">
-                        <i class="fab fa-facebook"></i>
-                        Facebook
-                    </button>
-                    <button class="share-btn copy" onclick="copyLink()">
-                        <i class="fas fa-copy"></i>
-                        Copy Link
-                    </button>
                 </div>
             </div>
         </div>
