@@ -14,13 +14,35 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-
-// Serve ad.html for both /ad/:id and /api/ads/getAdById/:id (for frontend page, not API)
-app.get(['/ad/:id', '/api/ads/getAdById/:id'], (req, res, next) => {
-    // If the request is for the API (Accept: application/json), skip to next (API handler)
+// Serve ad.html for direct ad ID routes (like /:id)
+app.get('/:id', (req, res, next) => {
+    const adId = req.params.id;
+    
+    // Skip if it's an API request
     if (req.headers.accept && req.headers.accept.includes('application/json')) {
         return next();
     }
+    
+    // Skip if it's a static file request (has file extension)
+    if (adId.includes('.')) {
+        return next();
+    }
+    
+    // Skip if it's the API path
+    if (adId === 'api') {
+        return next();
+    }
+    
+    // Serve ad.html for valid ad IDs (MongoDB ObjectId format - 24 hex characters)
+    if (/^[a-f\d]{24}$/i.test(adId)) {
+        res.sendFile(path.join(__dirname, 'public', 'ad.html'));
+    } else {
+        next(); // Let other routes handle invalid IDs
+    }
+});
+
+// Legacy route support (optional - for backward compatibility)
+app.get('/ad/:id', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'ad.html'));
 });
 

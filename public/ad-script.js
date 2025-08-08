@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const pathParts = window.location.pathname.split('/');
     const adId = pathParts[pathParts.length - 1];
     
-    if (adId && adId !== 'ad') {
+    // For direct ID routes (e.g., /68923a39f2c07e88dd10824a)
+    if (adId && adId !== '' && adId !== 'ad') {
         loadAdData(adId);
     } else {
         showError('Invalid ad ID');
