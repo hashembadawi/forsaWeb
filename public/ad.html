@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Details - Syria Market</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/">
+                    <i class="fas fa-store"></i>
+                    <span>Syria Market</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#about" class="nav-link">About</a>
+                <a href="/#features" class="nav-link">Features</a>
+                <a href="/#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Loading ad details...</p>
+    </div>
+
+    <!-- Error Message -->
+    <div id="error" class="error-container" style="display: none;">
+        <div class="error-content">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h2>Oops! Something went wrong</h2>
+            <p id="error-message">Failed to load ad details</p>
+            <a href="/" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+
+    <!-- Ad Details -->
+    <div id="ad-container" class="ad-page" style="display: none;">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <div class="container">
+                <a href="/"><i class="fas fa-home"></i> Home</a>
+                <span class="separator">></span>
+                <span id="breadcrumb-category">Category</span>
+                <span class="separator">></span>
+                <span>Ad Details</span>
+            </div>
+        </div>
+
+        <!-- Ad Content -->
+        <div class="container">
+            <div class="ad-content">
+                <!-- Image Gallery -->
+                <div class="ad-images">
+                    <div class="main-image">
+                        <img id="main-image" src="" alt="Ad Image">
+                        <div class="image-counter">
+                            <span id="current-image">1</span> / <span id="total-images">1</span>
+                        </div>
+                    </div>
+                    <div class="image-thumbnails" id="thumbnails">
+                        <!-- Thumbnails will be populated by JavaScript -->
+                    </div>
+                    <div class="image-navigation">
+                        <button class="nav-btn prev-btn" onclick="previousImage()">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="nav-btn next-btn" onclick="nextImage()">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Ad Details -->
+                <div class="ad-details">
+                    <div class="ad-header">
+                        <h1 id="ad-title">Loading...</h1>
+                        <div class="ad-price">
+                            <span id="price">0</span> <span id="currency">L.T</span>
+                        </div>
+                    </div>
+
+                    <div class="ad-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-folder"></i>
+                            <span>
+                                <span id="category">Category</span> > <span id="subcategory">Subcategory</span>
+                            </span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="location">Location</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span id="date">Date</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span class="approved">Verified</span>
+                        </div>
+                    </div>
+
+                    <div class="ad-description">
+                        <h3>Description</h3>
+                        <p id="description">Loading description...</p>
+                    </div>
+
+                    <div class="seller-info">
+                        <h3>Seller Information</h3>
+                        <div class="seller-card">
+                            <div class="seller-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="seller-details">
+                                <h4 id="seller-name">Seller Name</h4>
+                                <div class="seller-contact">
+                                    <i class="fas fa-phone"></i>
+                                    <span id="seller-phone">Phone</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ad-actions">
+                        <button class="btn btn-primary" onclick="contactSeller()">
+                            <i class="fas fa-phone"></i>
+                            Contact Seller
+                        </button>
+                        <button class="btn btn-secondary" onclick="shareAd()">
+                            <i class="fas fa-share"></i>
+                            Share
+                        </button>
+                        <button class="btn btn-outline" onclick="reportAd()">
+                            <i class="fas fa-flag"></i>
+                            Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="share-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Share this ad</h3>
+                <button class="close-btn" onclick="closeModal('share-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="share-options">
+                    <button class="share-btn whatsapp" onclick="shareToWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </button>
+                    <button class="share-btn facebook" onclick="shareToFacebook()">
+                        <i class="fab fa-facebook"></i>
+                        Facebook
+                    </button>
+                    <button class="share-btn copy" onclick="copyLink()">
+                        <i class="fas fa-copy"></i>
+                        Copy Link
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-store"></i>
+                    <span>Syria Market</span>
+                </div>
+                <p>&copy; 2025 Syria Market. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="ad-script.js"></script>
+</body>
+</html>
