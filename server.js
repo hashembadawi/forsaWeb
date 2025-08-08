@@ -24,8 +24,20 @@ app.get(['/ad/:id', '/api/ads/getAdById/:id'], (req, res, next) => {
     res.sendFile(path.join(__dirname, 'public', 'ad.html'));
 });
 
-// API endpoint to fetch ad data
-// (No local API handler, frontend fetches from remote API)
+// API endpoint to fetch ad data - proxy to external API
+app.get('/api/ads/getAdById/:id', async (req, res) => {
+    try {
+        const adId = req.params.id;
+        const response = await axios.get(`https://sahbo-app-api.onrender.com/api/ads/getAdById/${adId}`);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching ad data:', error.message);
+        res.status(500).json({ 
+            error: 'Failed to fetch ad data',
+            message: error.message 
+        });
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

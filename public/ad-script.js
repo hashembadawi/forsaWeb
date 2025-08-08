@@ -20,6 +20,7 @@ async function loadAdData(adId) {
     try {
         showLoading();
         
+        // Use remote server API endpoint
         const response = await fetch(`https://sahbo-app-api.onrender.com/api/ads/getAdById/${adId}`);
         
         if (!response.ok) {
