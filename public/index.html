@@ -1,26 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forsa - Welcome</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            .ltr-phone {
+                direction: ltr;
+                unicode-bidi: plaintext;
+                font-family: 'Cairo', sans-serif;
+                letter-spacing: 2px;
+            }
+        </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body style="font-family: 'Cairo', sans-serif;">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-store"></i>
-                <span>Forsa</span>
+                <span>FORSA</span>
             </div>
             <div class="nav-menu">
-                <a href="/" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="/" class="nav-link active">الرئيسية</a>
+                <a href="#about" class="nav-link">حول</a>
+                <a href="#features" class="nav-link">المميزات</a>
+                <a href="#contact" class="nav-link">تواصل معنا</a>
             </div>
             <div class="nav-toggle">
                 <span class="bar"></span>
@@ -34,11 +42,10 @@
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">Welcome to Forsa</h1>
-                <p class="hero-subtitle">Discover amazing products and connect with local sellers in Forsa</p>
+                <h1 class="hero-title">مرحباً بكم في منصة فرصة</h1>
+                <p class="hero-subtitle">فرصة هي منصّة إعلانات متكاملة تتيح لك نشر إعلانات لمختلف المنتجات والخدمات، بالإضافة إلى نشر إعلانات فرص العمل بسهولة وسرعة</p>
                 <div class="hero-buttons">
-                    <a href="#demo" class="btn btn-primary">Explore Ads</a>
-                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                    <a href="#about" class="btn btn-secondary">اعرف المزيد</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -52,76 +59,52 @@
     <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title">Why Choose Forsa</h2>
+            <h2 class="section-title">لماذا فرصة؟</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-search"></i>
                     </div>
-                    <h3>Easy Search</h3>
-                    <p>Find products quickly with our advanced search and filtering system</p>
+                    <h3>بحث سهل</h3>
+                    <p>ابحث عن الفرص بسرعة باستخدام نظام البحث والتصفية المتقدم</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>Secure Transactions</h3>
-                    <p>Safe and secure platform for all your buying and selling needs</p>
+                    <h3>سرعة انتشار</h3>
+                    <p>سرعة انتشار اعلانك من خلال التطبيق يعطيك افضلية في الوصول إلى المهتمين</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>Local Community</h3>
-                    <p>Connect with trusted sellers and buyers in your local area</p>
+                    <h3>سهولة التواصل</h3>
+                    <p>تواصل مع صاحب الإعلان بسهولة و يسر </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3>Mobile Friendly</h3>
-                    <p>Access the market anytime, anywhere with our responsive design</p>
+                    <h3>التوافقية</h3>
+                    <p>تصفح الفرص في أي وقت ومن أي مكان عبر تصميمنا المتجاوب</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Demo Section -->
-    <section id="demo" class="demo">
-        <div class="container">
-            <h2 class="section-title">Try Our Ad Display</h2>
-            <p class="section-subtitle">Enter an ad ID to see how our beautiful ad display works</p>
-            <div class="demo-container">
-                <div class="demo-input">
-                    <input type="text" id="adId" placeholder="Enter Ad ID (e.g., 68923a39f2c07e88dd10824a)" value="68923a39f2c07e88dd10824a">
-                    <button onclick="viewAd()" class="btn btn-primary">View Ad</button>
-                </div>
-                <p class="demo-note">Try the sample ID: 68923a39f2c07e88dd10824a</p>
-            </div>
-        </div>
-    </section>
+    <!-- Demo section removed as requested -->
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h2>About Forsa</h2>
-                    <p>Forsa is a modern, user-friendly marketplace designed to connect buyers and sellers across Syria. Our platform provides a safe and efficient way to discover, buy, and sell products in your local community.</p>
-                    <p>With features like detailed product listings, secure messaging, and location-based search, we're making it easier than ever to find what you need or sell what you have.</p>
+                    <h2>عن فرصة</h2>
+                    <p>فرصة هو تطبيق الإعلانات الشامل في سوريا، يجمع بين البساطة والسرعة ليمنحك تجربة مميزة في نشر إعلانات لمختلف المنتجات والخدمات. سواء كنت تبحث عن عقار، سيارة، أجهزة إلكترونية، أو حتى فرصة عمل، ستجد كل ما تحتاجه في مكان واحد.
+مع فرصة، يمكنك نشر إعلانك بسهولة، الوصول إلى أكبر عدد من المهتمين، وتحقيق أهدافك بسرعة. لأننا نؤمن أن كل لحظة قد تكون... فرصة!</p>
                     <div class="about-stats">
-                        <div class="stat">
-                            <h3>1000+</h3>
-                            <p>Active Users</p>
-                        </div>
-                        <div class="stat">
-                            <h3>50+</h3>
-                            <p>Categories</p>
-                        </div>
-                        <div class="stat">
-                            <h3>24/7</h3>
-                            <p>Support</p>
-                        </div>
+                        <!-- Stats removed as requested -->
                     </div>
                 </div>
                 <div class="about-image">
@@ -136,20 +119,16 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title">تواصل معنا</h2>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>contact@Forsa.com</span>
-                    </div>
-                    <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>+963 XX XXX XXXX</span>
+                        <span class="ltr-phone">0090 551 0300 730</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Idleb, Syria</span>
+                        <span>إدلب، سوريا</span>
                     </div>
                 </div>
             </div>
@@ -162,13 +141,14 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <i class="fas fa-store"></i>
-                    <span>Forsa</span>
+                    <span>FORSA</span>
                 </div>
-                <p>&copy; 2025 Forsa. All rights reserved.</p>
+                <p>&copy; 2025 FORSA. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <!-- goToAdPage script removed as requested -->
 </body>
 </html>
